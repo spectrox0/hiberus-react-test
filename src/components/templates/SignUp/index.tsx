@@ -1,5 +1,5 @@
-import {FC} from "react";
-import {Title} from "../../atoms/Title";
+import React, {FC} from "react";
+import {Title} from "../../atoms";
 
 export const SignUpTemplate: FC = () => {
     return (

@@ -1,8 +1,11 @@
 import React, {FC} from "react";
+import { Spinner } from "../../atoms";
 import {ScreenStyles} from "./styles";
-import {Spinner} from "../../atoms/Spinner";
 
-export const ScreenLoading: FC = () => {
+type Props = {
+    loading: boolean
+}
+export const ScreenLoading: FC<Props> = () => {
     return (
         <ScreenStyles>
             <Spinner/>
