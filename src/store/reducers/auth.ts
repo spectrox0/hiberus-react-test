@@ -4,7 +4,8 @@ import {LOGIN_FAILURE, LOGIN_SUCCESS} from "../actionTypes";
 
 
 const initialState: AuthState = {
-    session: undefined
+    session: undefined,
+    loading: false
 
 }
 export default (state = initialState, actions: AuthActions) => {

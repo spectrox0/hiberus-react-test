@@ -4,7 +4,7 @@ import logger from "redux-logger";
 
 import { rootSaga } from "./rootSaga";
 import {rootReducer} from "./reducers";
-
+export type {RootState} from './reducers'
 // Create the saga middleware
 const sagaMiddleware = createSagaMiddleware();
 
@@ -15,4 +15,3 @@ const store = createStore(rootReducer, applyMiddleware(sagaMiddleware, logger));
 sagaMiddleware.run(rootSaga);
 
 export default store;
-export type RootState = ReturnType<typeof rootReducer>;

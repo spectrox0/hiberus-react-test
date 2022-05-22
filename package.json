@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
+    "@fvilers/disable-react-devtools": "^1.3.0",
     "@mui/icons-material": "^5.8.0",
     "@mui/material": "^5.8.0",
     "@testing-library/jest-dom": "^5.14.1",
@@ -29,6 +30,7 @@
     "toastify": "^2.0.1",
     "typescript": "^4.4.2",
     "universal-cookie": "^4.0.4",
+    "uuidv4": "^6.2.13",
     "web-vitals": "^2.1.0",
     "yup": "^0.32.11"
   },

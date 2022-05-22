@@ -7,7 +7,7 @@ import {User} from "../../../types/User";
 
 export type AuthState = {
     session?: AuthSession
-    loading?: boolean
+    loading: boolean
 }
 
 export type Login = Action<typeof LOGIN, LoginPayload>;
