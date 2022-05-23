@@ -10,17 +10,21 @@ export default (state = initialState, actions: AuthActions) => {
     case LOGIN: {
       return {
         ...state,
+        loading: true,
       }
     }
 
     case LOGIN_SUCCESS: {
       return {
         ...state,
+        loading: false,
+        session: actions.payload,
       }
     }
     case LOGIN_FAILURE: {
       return {
         ...state,
+        loading: false,
       }
     }
     case LOGOUT: {

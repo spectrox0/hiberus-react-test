@@ -1,11 +1,12 @@
+import { motion } from 'framer-motion'
 import React, { FC } from 'react'
-import { Title } from '../../atoms'
 import { SignUpForm } from '../../organism'
+import { motionPropsTransitionViewOpacity } from '../../../utils/animation/views'
 
 export const SignUpTemplate: FC = () => {
   return (
-    <div>
+    <motion.div {...motionPropsTransitionViewOpacity}>
       <SignUpForm />
-    </div>
+    </motion.div>
   )
 }

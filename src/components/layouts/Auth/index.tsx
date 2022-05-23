@@ -1,11 +1,12 @@
 import React from 'react'
 import { FCWithChildren } from '../../../types'
-import { CustomBox } from '../../atoms/Box'
+import { CustomBox } from '../../atoms'
 import { Layout } from './styles'
-import { Route, Routes, useRoutes, useLocation, Navigate } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { Login, SignUp } from '../../../views'
 import { Box, Container, styled } from '@mui/material'
 import { Link } from '../../atoms/Link'
+import { AnimatePresence } from 'framer-motion'
 
 const LinkStyles = styled(Link)<{ active: boolean }>(({ theme, active }) => ({
   textDecoration: 'none',
@@ -20,7 +21,7 @@ const LinkStyles = styled(Link)<{ active: boolean }>(({ theme, active }) => ({
   },
 }))
 export const AuthLayout: FCWithChildren = () => {
-  const { pathname } = useLocation()
+  const { pathname, key, ...rest } = useLocation()
 
   return (
     <Layout>
@@ -34,12 +35,15 @@ export const AuthLayout: FCWithChildren = () => {
               sign up
             </LinkStyles>
           </Box>
-          <Routes>
-            <Route index element={<Login />} />
-            <Route path='login' element={<Login />} />
-            <Route path='sign-up' element={<SignUp />} />
-            <Route path={'*'} element={<Navigate to={'/'} />} />
-          </Routes>
+
+          <AnimatePresence exitBeforeEnter>
+            <Routes location={{ key, pathname, ...rest }} key={pathname}>
+              <Route index element={<Login />} />
+              <Route path='login' element={<Login />} />
+              <Route path='sign-up' element={<SignUp />} />
+              <Route path={'*'} element={<Navigate to={'/'} />} />
+            </Routes>
+          </AnimatePresence>
         </CustomBox>
       </Container>
     </Layout>

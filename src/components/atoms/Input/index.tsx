@@ -20,7 +20,7 @@ export const Input: FC<InputProps> = ({
   className = '',
   error,
   disabled,
-  margin = 'dense',
+  margin = 'normal',
   onClickIcon,
   hideError,
   tooltip,

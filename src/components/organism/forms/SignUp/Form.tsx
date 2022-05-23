@@ -62,7 +62,7 @@ export const Form: FC<FormikProps<SignUpFormValues>> = ({
         onChange={handleChange}
         onBlur={handleBlur}
       />
-      <Btn sx={{ my: 1 }} fullWidth type={'submit'} disabled={!isValid || loading}>
+      <Btn sx={{ mt: 3 }} fullWidth type={'submit'} disabled={!isValid || loading}>
         Submit
       </Btn>
     </FormikForm>

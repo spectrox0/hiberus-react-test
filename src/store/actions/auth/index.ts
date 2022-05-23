@@ -1,5 +1,12 @@
-import { Login, LoginSuccess, Logout, SignUp, SignUpSuccess } from '../../types/auth'
-import { LOGIN, LOGIN_SUCCESS, LOGOUT, SIGNUP, SIGNUP_SUCCESS } from '../../actionTypes'
+import { Login, LoginFailure, LoginSuccess, Logout, SignUp, SignUpSuccess } from '../../types/auth'
+import {
+  LOGIN,
+  LOGIN_FAILURE,
+  LOGIN_SUCCESS,
+  LOGOUT,
+  SIGNUP,
+  SIGNUP_SUCCESS,
+} from '../../actionTypes'
 import { User } from '../../../types/User'
 import { AuthSession } from '../../../types'
 import { LoginPayload } from '../../../services/types/auth'
@@ -11,6 +18,11 @@ export const login: Login = (payload: LoginPayload) => ({
 
 export const loginSuccess: LoginSuccess = (payload: AuthSession) => ({
   type: LOGIN_SUCCESS,
+  payload,
+})
+
+export const loginFailure: LoginFailure = (payload) => ({
+  type: LOGIN_FAILURE,
   payload,
 })
 

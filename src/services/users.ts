@@ -25,7 +25,6 @@ class Users extends Service {
       showSuccess('User deleted')
       return Promise.resolve()
     } else {
-      error(status)
       return Promise.reject(status)
     }
   }

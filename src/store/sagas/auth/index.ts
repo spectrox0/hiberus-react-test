@@ -4,5 +4,5 @@ import { loginSaga } from './login'
 import { signUpSaga } from './signUp'
 
 export function* authSaga() {
-  yield all([takeLatest(SIGNUP, signUpSaga)])
+  yield all([takeLatest(SIGNUP, signUpSaga), takeLatest(LOGIN, loginSaga)])
 }
