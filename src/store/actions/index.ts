@@ -1,2 +1,2 @@
-export {deleteUser, getUsers, createUser} from './users'
-export {login, loginSuccess, signUpSuccess, signUp, logout} from './auth'
+export { deleteUser, getUsers, createUser, updateUser } from './users'
+export { login, loginSuccess, signUpSuccess, signUp, logout } from './auth'

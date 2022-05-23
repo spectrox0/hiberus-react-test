@@ -1,12 +1,11 @@
-import React, {FC} from "react";
-import {Title} from "../../atoms";
+import React, { FC } from 'react'
+import { Title } from '../../atoms'
+import { SignUpForm } from '../../organism'
 
 export const SignUpTemplate: FC = () => {
-    return (
-        <div>
-            <Title>
-                Sign up
-            </Title>
-        </div>
-    )
+  return (
+    <div>
+      <SignUpForm />
+    </div>
+  )
 }

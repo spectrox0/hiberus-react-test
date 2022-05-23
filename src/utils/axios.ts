@@ -1,15 +1,13 @@
 import axios from 'axios'
-import {config} from "../config";
+import { config } from '../config'
 
-import Cookies from 'universal-cookie';
+import Cookies from 'universal-cookie'
 
-const cookies = new Cookies();
+const cookies = new Cookies()
 
-export const axiosClient = axios.create(
-    {
-        baseURL: config.baseAPIUrl,
-        headers: {
-            'Authorization': `bearer ${cookies.get("authToken")}`
-        }
-    }
-)
+export const axiosClient = axios.create({
+  baseURL: config.baseAPIUrl,
+  headers: {
+    Authorization: `bearer ${cookies.get('authToken')}`,
+  },
+})

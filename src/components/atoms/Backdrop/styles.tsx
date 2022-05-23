@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion'
+import { styled } from '@mui/material'
 
 export const BackdropStyles = styled(motion.div)`
   transform: translate3d(0, 0, 0);
@@ -11,4 +11,4 @@ export const BackdropStyles = styled(motion.div)`
   left: 0;
   width: 100%;
   height: 100%;
-`;
+`

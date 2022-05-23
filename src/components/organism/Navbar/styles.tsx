@@ -1,6 +1,3 @@
-import {styled} from "@mui/material";
+import { styled } from '@mui/material'
 
-
-export const NavbarStyles = styled('nav')(()=> ({
-
-}))
+export const NavbarStyles = styled('nav')(() => ({}))

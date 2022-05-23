@@ -1,21 +1,23 @@
-import React from 'react';
-import './App.css';
-import {Provider} from "react-redux";
-import store from "./store";
-import {Routes} from "./routes";
-import {GlobalStyles, ThemeProvider} from "@mui/material";
-import {darkTheme} from "./styles/theme";
-import {globalStyles} from "./styles/global";
+import React from 'react'
+import { Provider } from 'react-redux'
+import store from './store'
+import { GlobalStyles, ThemeProvider } from '@mui/material'
+import { darkTheme } from './styles/theme'
+import { globalStyles } from './styles/global'
+import { Layout } from './components/layouts'
+import { BrowserRouter } from 'react-router-dom'
 
 function App() {
   return (
     <Provider store={store}>
-        <ThemeProvider theme={darkTheme} >
-            <Routes />
-            <GlobalStyles styles={globalStyles} />
-        </ThemeProvider>
+      <ThemeProvider theme={darkTheme}>
+        <BrowserRouter>
+          <Layout />
+        </BrowserRouter>
+        <GlobalStyles styles={globalStyles} />
+      </ThemeProvider>
     </Provider>
-  );
+  )
 }
 
-export default App;
+export default App

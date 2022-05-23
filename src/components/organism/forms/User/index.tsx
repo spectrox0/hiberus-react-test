@@ -1,8 +1,5 @@
-import {FC} from "react";
+import { FC } from 'react'
 
-
-export const UserForm:FC = () => {
-    return (<div>
-
-    </div>)
+export const UserForm: FC = () => {
+  return <div></div>
 }

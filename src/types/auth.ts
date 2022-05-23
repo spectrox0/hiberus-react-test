@@ -1,5 +1,5 @@
 export type AuthSession = {
-    accessToken: string,
-    refreshToken: string,
-    tokenType: string
+  accessToken: string
+  refreshToken: string
+  tokenType: string
 }
