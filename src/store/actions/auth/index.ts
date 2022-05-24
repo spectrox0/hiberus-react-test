@@ -7,8 +7,6 @@ import {
   SIGNUP,
   SIGNUP_SUCCESS,
 } from '../../actionTypes'
-import { User } from '../../../types/User'
-import { AuthSession } from '../../../types'
 import { LoginPayload } from '../../../services/types/auth'
 
 export const login: Login = (payload: LoginPayload) => ({
@@ -16,17 +14,16 @@ export const login: Login = (payload: LoginPayload) => ({
   payload,
 })
 
-export const loginSuccess: LoginSuccess = (payload: AuthSession) => ({
+export const loginSuccess: LoginSuccess = (payload) => ({
   type: LOGIN_SUCCESS,
   payload,
 })
 
-export const loginFailure: LoginFailure = (payload) => ({
+export const loginFailure: LoginFailure = () => ({
   type: LOGIN_FAILURE,
-  payload,
 })
 
-export const signUp: SignUp = (payload: User) => ({
+export const signUp: SignUp = (payload) => ({
   type: SIGNUP,
   payload,
 })

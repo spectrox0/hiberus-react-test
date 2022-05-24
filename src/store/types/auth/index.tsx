@@ -20,7 +20,7 @@ export type Login = Action<typeof LOGIN, LoginPayload>
 
 export type LoginSuccess = Action<typeof LOGIN_SUCCESS, AuthSession>
 export type Logout = Action<typeof LOGOUT>
-export type SignUp = Action<typeof SIGNUP, User>
+export type SignUp = Action<typeof SIGNUP, Omit<User, 'id'>>
 export type SignUpSuccess = Action<typeof SIGNUP_SUCCESS>
 export type LoginFailure = Action<typeof LOGIN_FAILURE>
 
