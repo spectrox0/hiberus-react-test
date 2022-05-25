@@ -1,28 +1,23 @@
 import { Service } from './abstractions/service'
 import { endpoints } from './constants/endpoints'
-import { error } from '../utils/handlingErrors'
-import { axiosClient } from '../utils/axios'
+import { axiosClient } from '../utils'
 import { AuthSession } from '../types'
 import { User } from '../types/User'
 
 export class AuthServiceClass extends Service {
   login = async (payload: { email: string; password: string }): Promise<AuthSession> => {
-    console.log('example')
-    const { data, status } = await this.axiosClient().post(endpoints.login, payload)
-    if (!(status >= 200 && status < 300) || !data) {
-      return Promise.reject(status)
-    }
+    const { data } = await this.axiosClient().post(endpoints.login, payload)
+
     return data
   }
 
   signUp = async (payload: Omit<User, 'id'>): Promise<void> => {
-    const { data, status } = await this.axiosClient().post(endpoints.signUp, payload)
-    if (!data && status !== 200) return Promise.reject()
+    const { data } = await this.axiosClient().post(endpoints.signUp, payload)
     return data
   }
 
   me = async (): Promise<User> => {
-    const { data, status } = await this.axiosClient().get(endpoints.me)
+    const { data } = await this.axiosClient().get(endpoints.me)
     return data
   }
 }

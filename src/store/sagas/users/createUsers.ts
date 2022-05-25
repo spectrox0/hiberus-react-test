@@ -1,7 +1,7 @@
 import { call, put } from 'redux-saga/effects'
 import { createUser, getUsers } from '../../actions'
 import { UsersServiceV1 } from '../../../services'
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import { error } from '../../../utils'
 
 export function* createUserSaga({
@@ -12,7 +12,7 @@ export function* createUserSaga({
     yield put(getUsers())
   } catch (err) {
     if (axios.isAxiosError(err)) {
-      error(err?.response?.status?.toString?.() as string)
+      error(err as AxiosError<{ message: string }>)
     }
   }
 }

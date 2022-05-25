@@ -6,8 +6,8 @@ import { logoutSaga } from './logout'
 
 export function* authSaga() {
   yield all([
-    takeLatest(SIGNUP, signUpSaga),
     takeLatest(LOGIN, loginSaga),
     takeLatest(LOGOUT, logoutSaga),
+    takeLatest(SIGNUP, signUpSaga),
   ])
 }

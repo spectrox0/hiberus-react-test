@@ -1,10 +1,6 @@
 import { showError } from './message'
+import { AxiosError } from 'axios'
 
-const errors: { [key: string]: string } = {
-  '404': 'User email not found or password invalid',
-  '601': 'User is not validated',
-}
-
-export const error = (statusCode: string) => {
-  showError(errors[statusCode])
+export const error = (error: AxiosError<{ message: string }>) => {
+  showError(error?.response?.data?.message)
 }

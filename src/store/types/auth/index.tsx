@@ -7,6 +7,7 @@ import {
   LOGOUT,
   LOGOUT_SUCCESS,
   SIGNUP,
+  SIGNUP_FAILURE,
   SIGNUP_SUCCESS,
 } from '../../actionTypes'
 import { LoginPayload } from '../../../services/types/auth'
@@ -26,9 +27,17 @@ export type Logout = Action<typeof LOGOUT>
 export type LogoutSuccess = Action<typeof LOGOUT_SUCCESS>
 export type SignUp = Action<typeof SIGNUP, Omit<User, 'id'>>
 export type SignUpSuccess = Action<typeof SIGNUP_SUCCESS>
+export type SignUpFailure = Action<typeof SIGNUP_FAILURE>
 export type LoginFailure = Action<typeof LOGIN_FAILURE>
 
 export type SetCurrentUser = Action<typeof SET_CURRENT_USER, User>
 export type AuthActions = ReturnType<
-  Login | Logout | SignUp | LoginSuccess | SignUpSuccess | LoginFailure | SetCurrentUser
+  | Login
+  | Logout
+  | SignUp
+  | LoginSuccess
+  | SignUpSuccess
+  | LoginFailure
+  | SetCurrentUser
+  | SignUpFailure
 >

@@ -4,7 +4,7 @@ import { AuthServiceV1 } from '../../../services'
 import { AuthSession } from '../../../types'
 import { loginFailure } from '../../actions/auth'
 import { error, saveCache } from '../../../utils'
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 
 export function* loginSaga({ payload: { password, email } }: ReturnType<typeof login>) {
   try {
@@ -12,9 +12,9 @@ export function* loginSaga({ payload: { password, email } }: ReturnType<typeof l
     saveCache('session', session)
     yield put(loginSuccess(session))
   } catch (err) {
-    if (axios.isAxiosError(err)) {
-      error(err?.response?.status?.toString?.() as string)
-    }
     yield put(loginFailure())
+    if (axios.isAxiosError(err)) {
+      error(err as AxiosError<{ message: string }>)
+    }
   }
 }

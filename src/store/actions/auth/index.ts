@@ -6,6 +6,7 @@ import {
   LogoutSuccess,
   SetCurrentUser,
   SignUp,
+  SignUpFailure,
   SignUpSuccess,
 } from '../../types/auth'
 import {
@@ -15,6 +16,7 @@ import {
   LOGOUT,
   LOGOUT_SUCCESS,
   SIGNUP,
+  SIGNUP_FAILURE,
   SIGNUP_SUCCESS,
 } from '../../actionTypes'
 import { LoginPayload } from '../../../services/types/auth'
@@ -25,6 +27,9 @@ export const login: Login = (payload: LoginPayload) => ({
   payload,
 })
 
+export const signUpFailure: SignUpFailure = () => ({
+  type: SIGNUP_FAILURE,
+})
 export const loginSuccess: LoginSuccess = (payload) => ({
   type: LOGIN_SUCCESS,
   payload,

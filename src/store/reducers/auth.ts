@@ -1,5 +1,5 @@
 import { AuthActions, AuthState } from '../types/auth'
-import { LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT, SIGNUP } from '../actionTypes'
+import { LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT, SIGNUP, SIGNUP_FAILURE } from '../actionTypes'
 import { getCache } from '../../utils'
 import { AuthSession } from '../../types'
 import { SET_CURRENT_USER } from '../actionTypes/auth'
@@ -9,32 +9,38 @@ const initialState: AuthState = {
   session: getCache<AuthSession | undefined>('session'),
   authLoading: false,
 }
-export default (state = initialState, actions: AuthActions) => {
+export default (state: AuthState = initialState, actions: AuthActions) => {
   switch (actions.type) {
     case LOGIN: {
       return {
         ...state,
-        loading: true,
+        authLoading: true,
       }
     }
 
     case SIGNUP: {
       return {
         ...state,
-        loading: true,
+        authLoading: true,
+      }
+    }
+    case SIGNUP_FAILURE: {
+      return {
+        ...state,
+        authLoading: false,
       }
     }
     case LOGIN_SUCCESS: {
       return {
         ...state,
-        loading: false,
+        authLoading: false,
         session: actions.payload,
       }
     }
     case LOGIN_FAILURE: {
       return {
         ...state,
-        loading: false,
+        authLoading: false,
       }
     }
     case SET_CURRENT_USER: {
@@ -49,7 +55,7 @@ export default (state = initialState, actions: AuthActions) => {
       }
     }
     default: {
-      return { ...state }
+      return state
     }
   }
 }
