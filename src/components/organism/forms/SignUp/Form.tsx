@@ -1,9 +1,8 @@
 import React, { FC } from 'react'
 import { Form as FormikForm, FormikProps } from 'formik'
 import { SignUpFormValues } from './index'
-import { Btn, Input } from '../../../atoms'
+import { Btn, Input, PasswordInput } from '../../../atoms'
 import { useAppSelector } from '../../../../store/selector'
-import { PasswordInput } from '../../../atoms/PasswordInput'
 
 export const Form: FC<FormikProps<SignUpFormValues>> = ({
   values: { email, password, confirmPassword, surname, name },
@@ -13,7 +12,7 @@ export const Form: FC<FormikProps<SignUpFormValues>> = ({
   handleBlur,
   isValid,
 }) => {
-  const { loading } = useAppSelector((state) => state.auth)
+  const { authLoading } = useAppSelector((state) => state.auth)
 
   return (
     <FormikForm>
@@ -36,7 +35,7 @@ export const Form: FC<FormikProps<SignUpFormValues>> = ({
         onBlur={handleBlur}
       />
       <Input
-        error={(touched.name && errors.name) || ''}
+        error={(touched.email && errors.email) || ''}
         fullWidth
         value={email}
         label={'email'}
@@ -62,7 +61,7 @@ export const Form: FC<FormikProps<SignUpFormValues>> = ({
         onChange={handleChange}
         onBlur={handleBlur}
       />
-      <Btn sx={{ mt: 3 }} fullWidth type={'submit'} disabled={!isValid || loading}>
+      <Btn sx={{ mt: 3 }} fullWidth type={'submit'} disabled={!isValid || authLoading}>
         Submit
       </Btn>
     </FormikForm>

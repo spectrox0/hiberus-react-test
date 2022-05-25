@@ -8,21 +8,22 @@ import { User } from '../types/User'
 export class AuthServiceClass extends Service {
   login = async (payload: { email: string; password: string }): Promise<AuthSession> => {
     console.log('example')
-    const { data, status } = await this.axiosClient.post(endpoints.login, payload)
+    const { data, status } = await this.axiosClient().post(endpoints.login, payload)
     if (!(status >= 200 && status < 300) || !data) {
       return Promise.reject(status)
     }
     return data
   }
 
-  signUp = async (payload: User): Promise<void> => {
-    const { data, status } = await this.axiosClient.post(endpoints.signUp, payload)
+  signUp = async (payload: Omit<User, 'id'>): Promise<void> => {
+    const { data, status } = await this.axiosClient().post(endpoints.signUp, payload)
     if (!data && status !== 200) return Promise.reject()
     return data
   }
 
-  me = async (): Promise<void> => {
-    const { data, status } = await this.axiosClient.get(endpoints.me)
+  me = async (): Promise<User> => {
+    const { data, status } = await this.axiosClient().get(endpoints.me)
+    return data
   }
 }
 

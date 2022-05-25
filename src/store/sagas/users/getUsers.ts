@@ -1,16 +1,12 @@
-import { call, put, select } from 'redux-saga/effects'
-import { getUsers } from '../../actions'
-import { RootState } from '../../reducers'
+import { call, put } from 'redux-saga/effects'
 import { UsersServiceV1 } from '../../../services'
 import { User } from '../../../types/User'
+import { getUsersSuccess } from '../../actions/users'
 
 export function* getUsersSaga() {
   try {
-    const {
-      auth: { loading },
-    }: RootState = yield select()
-    const user: User = yield call(UsersServiceV1.getUsers)
-    yield put(getUsers())
+    const { items }: { count: number; items: User[] } = yield call(UsersServiceV1.getUsers)
+    yield put(getUsersSuccess(items))
   } catch (err) {
     console.log(err)
   }

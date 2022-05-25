@@ -4,13 +4,11 @@ import { RootState } from '../../reducers'
 import { AuthServiceV1 } from '../../../services'
 
 export function* signUpSaga({
-  payload: { password, email, name, id, surname },
+  payload: { password, email, name, surname },
 }: ReturnType<typeof signUp>) {
   try {
-    const {
-      auth: { loading },
-    }: RootState = yield select()
-    yield call(AuthServiceV1.signUp, { email, password, id, surname, name })
+    yield call(AuthServiceV1.signUp, { email, password, surname, name })
+    console.log('asas')
     yield put(login({ email, password }))
   } catch (err) {
     console.log(err)

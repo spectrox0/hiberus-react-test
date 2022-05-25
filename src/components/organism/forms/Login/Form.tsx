@@ -13,7 +13,7 @@ export const Form: FC<FormikProps<LoginFormValues>> = ({
   handleBlur,
   isValid,
 }) => {
-  const { loading } = useAppSelector((state) => state.auth)
+  const { authLoading } = useAppSelector((state) => state.auth)
 
   return (
     <FormikForm>
@@ -39,7 +39,7 @@ export const Form: FC<FormikProps<LoginFormValues>> = ({
         onBlur={handleBlur}
       />
 
-      <Btn sx={{ my: 3 }} fullWidth type={'submit'} disabled={!isValid || loading}>
+      <Btn sx={{ my: 3 }} fullWidth type={'submit'} disabled={!isValid || authLoading}>
         Submit
       </Btn>
     </FormikForm>

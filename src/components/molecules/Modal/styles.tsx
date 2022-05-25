@@ -6,7 +6,7 @@ export const ModalStyles = styled(motion.div)<{
   width?: string
   padding?: string
 }>(({ theme, padding, width, size }) => ({
-  padding: padding ? padding : '0.8rem',
+  padding: `${theme.spacing(1)} ${theme.spacing(2)}`,
   position: 'relative',
   top: '50%',
   left: '50%',
@@ -21,11 +21,7 @@ export const ModalStyles = styled(motion.div)<{
   width: 'inherit',
   borderRadius: '10px',
   maxHeight: 'calc(80vh - 2rem)',
-  '.title': {
-    letterSpacing: '0.013em',
-    fontSize: '1.3em',
-    fontWeight: '500',
-  },
+
   '.close': {
     position: 'absolute',
     right: 0,

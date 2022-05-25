@@ -32,7 +32,7 @@ export const Form: FC<FormikProps<UserFormValues>> = ({
         onBlur={handleBlur}
       />
       <Input
-        error={(touched.name && errors.name) || ''}
+        error={(touched.email && errors.email) || ''}
         fullWidth
         value={email}
         label={'email'}
@@ -58,7 +58,7 @@ export const Form: FC<FormikProps<UserFormValues>> = ({
         onChange={handleChange}
         onBlur={handleBlur}
       />
-      <Btn sx={{ mt: 3 }} fullWidth type={'submit'} disabled={!isValid}>
+      <Btn sx={{ my: 3 }} fullWidth type={'submit'} disabled={!isValid}>
         Submit
       </Btn>
     </FormikForm>

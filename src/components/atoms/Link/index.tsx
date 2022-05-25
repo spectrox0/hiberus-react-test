@@ -4,7 +4,11 @@ import React, { FC } from 'react'
 
 export const Link: FC<LinkBaseProps & LinkProps> = ({ children, ...props }) => {
   return (
-    <MuiLink component={RouterLink} {...props}>
+    <MuiLink
+      sx={{ textDecoration: 'none', '&:hover': { opacity: 0.8 } }}
+      component={RouterLink}
+      {...props}
+    >
       {children}
     </MuiLink>
   )

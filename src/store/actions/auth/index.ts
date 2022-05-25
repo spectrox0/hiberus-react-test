@@ -1,13 +1,24 @@
-import { Login, LoginFailure, LoginSuccess, Logout, SignUp, SignUpSuccess } from '../../types/auth'
+import {
+  Login,
+  LoginFailure,
+  LoginSuccess,
+  Logout,
+  LogoutSuccess,
+  SetCurrentUser,
+  SignUp,
+  SignUpSuccess,
+} from '../../types/auth'
 import {
   LOGIN,
   LOGIN_FAILURE,
   LOGIN_SUCCESS,
   LOGOUT,
+  LOGOUT_SUCCESS,
   SIGNUP,
   SIGNUP_SUCCESS,
 } from '../../actionTypes'
 import { LoginPayload } from '../../../services/types/auth'
+import { SET_CURRENT_USER } from '../../actionTypes/auth'
 
 export const login: Login = (payload: LoginPayload) => ({
   type: LOGIN,
@@ -34,4 +45,13 @@ export const signUpSuccess: SignUpSuccess = () => ({
 
 export const logout: Logout = () => ({
   type: LOGOUT,
+})
+
+export const logoutSuccess: LogoutSuccess = () => ({
+  type: LOGOUT_SUCCESS,
+})
+
+export const setCurrentUser: SetCurrentUser = (payload) => ({
+  type: SET_CURRENT_USER,
+  payload,
 })

@@ -2,7 +2,7 @@ import React, { FC, PropsWithChildren } from 'react'
 import { ModalStyles } from './styles'
 import { AnimatePresence } from 'framer-motion'
 import { createPortal } from 'react-dom'
-import { Backdrop } from '../../atoms'
+import { Backdrop, Title } from '../../atoms'
 import { Box, Breakpoint, IconButton } from '@mui/material'
 import { motionPropsModal } from '../../../utils/animation/views'
 import { Close } from '@mui/icons-material'
@@ -22,7 +22,7 @@ export const Modal: FC<PropsWithChildren<ModalProps>> = ({
   children,
   isOpen,
   title,
-  size = 'md',
+  size = 'sm',
   close,
   block,
   width,
@@ -47,14 +47,18 @@ export const Modal: FC<PropsWithChildren<ModalProps>> = ({
             {(close || title) && (
               <Box
                 pt={!title ? 3 : 0}
-                pb={3}
+                mt={title ? 1 : 0}
                 display={'flex'}
                 alignItems='center'
                 position='relative'
                 justifyContent={'center'}
                 width='100%'
               >
-                {title && <h5 className={'title'}> {title} </h5>}
+                {title && (
+                  <Title my={1} className={'title'}>
+                    {title}
+                  </Title>
+                )}
                 {close && (
                   <IconButton size={'small'} className={'close'} onClick={close}>
                     <Close fontSize={'small'} />

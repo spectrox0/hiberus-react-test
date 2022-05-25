@@ -5,9 +5,6 @@ import { UsersServiceV1 } from '../../../services'
 
 export function* deleteUserSaga({ payload: { id } }: ReturnType<typeof deleteUser>) {
   try {
-    const {
-      auth: { loading },
-    }: RootState = yield select()
     yield call(UsersServiceV1.deleteUser, id)
     yield put(getUsers())
   } catch (err) {

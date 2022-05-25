@@ -1,13 +1,20 @@
 import axios from 'axios'
 import { config } from '../config'
+import { getCache } from './cache'
+import { AuthSession } from '../types'
+import { setupCache } from 'axios-cache-adapter'
 
-import Cookies from 'universal-cookie'
-
-const cookies = new Cookies()
-
-export const axiosClient = axios.create({
-  baseURL: config.baseAPIUrl,
-  headers: {
-    Authorization: `bearer ${cookies.get('authToken')}`,
+const cache = setupCache({
+  maxAge: 0.25 * 60 * 1000, // Hold onto the data for 15 seconds
+  exclude: {
+    methods: ['put', 'patch', 'delete', 'post'],
   },
 })
+export const axiosClient = () =>
+  axios.create({
+    baseURL: config.baseAPIUrl,
+    adapter: cache.adapter,
+    headers: {
+      Authorization: `Bearer ${getCache<AuthSession | undefined>('session')?.accessToken}`,
+    },
+  })
