@@ -1,11 +1,11 @@
-import React, { FC, useEffect, useState } from 'react'
-import { Btn, Text, Title } from '../../atoms'
+import React, { FC, useEffect, useMemo, useState } from 'react'
+import { Btn, Input, Text, Title } from '../../atoms'
 import { CustomTable } from '../../organism'
 import { useDispatch } from 'react-redux'
 import { deleteUser, getUsers } from '../../../store/actions'
 import { useAppSelector } from '../../../store/selector'
 import { Box, IconButton } from '@mui/material'
-import { DeleteOutline, EditOutlined } from '@mui/icons-material'
+import { DeleteOutline, EditOutlined, Search } from '@mui/icons-material'
 import { User } from '../../../types/User'
 import { Modal } from '../../molecules'
 import { UserForm } from '../../organism/forms/User'
@@ -26,6 +26,16 @@ export const UsersTemplate: FC = () => {
     dispatch(getUsers())
   }, [])
   const { users = [], currentUser } = useAppSelector((state) => ({ ...state.users, ...state.auth }))
+  const [search, setSearch] = useState<string>('')
+  const filterUsers = () =>
+    useMemo<User[]>(
+      () =>
+        users.filter((item) => {
+          const searchValue = search.trim().toLowerCase()
+          return true
+        }),
+      [users],
+    )
   const [modal, setModal] = useState<ValueModal>()
   return (
     <div>
@@ -38,6 +48,9 @@ export const UsersTemplate: FC = () => {
       <Btn onClick={() => setModal({ option: Option.CREATE })} sx={{ mb: 2 }}>
         Create
       </Btn>
+      {users.length && (
+        <Input icon={Search} value={search} onChange={({ target }) => setSearch(target.value)} />
+      )}
       <Modal
         close={() => setModal(undefined)}
         title={'Delete User'}
