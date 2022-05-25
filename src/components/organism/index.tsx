@@ -1,3 +1,5 @@
 export { Navbar } from './Navbar'
 export { CustomTable } from './Table'
 export { SignUpForm } from './forms/SignUp'
+export { LoginForm } from './forms/Login'
+export { UserForm } from './forms/User'

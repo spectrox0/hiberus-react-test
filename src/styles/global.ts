@@ -77,9 +77,9 @@ export const globalStyles: StyledGlobalStylesProps<Theme>['styles'] = (theme) =>
 
     // Used only for colored theme
     '--toastify-text-color-info': theme.palette.text.primary,
-    '--toastify-text-color-success': theme.palette.text.primary,
-    '--toastify-text-color-warning': theme.palette.text.primary,
-    '--toastify-text-color-error': theme.palette.text.primary,
+    '--toastify-text-color-success': theme.palette.success.main,
+    '--toastify-text-color-warning': theme.palette.warning.main,
+    '--toastify-text-color-error': theme.palette.error.main,
 
     '--toastify-spinner-color': '#616161',
     '--toastify-spinner-color-empty-area': '#e0e0e0',

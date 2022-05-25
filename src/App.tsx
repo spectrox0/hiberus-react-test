@@ -11,10 +11,10 @@ function App() {
   return (
     <Provider store={store}>
       <ThemeProvider theme={darkTheme}>
+        <GlobalStyles styles={globalStyles} />
         <BrowserRouter>
           <Layout />
         </BrowserRouter>
-        <GlobalStyles styles={globalStyles} />
       </ThemeProvider>
     </Provider>
   )

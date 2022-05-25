@@ -5,9 +5,7 @@ import { User } from '../types/User'
 
 class Users extends Service {
   getUser = async (id: string): Promise<User> => {
-    const { data } = await this.axiosClient().get(endpoints.user(id))
-
-    return data
+    return (await this.axiosClient().get(endpoints.user(id))).data
   }
   getUsers = async (): Promise<{ count: number; items: User[] }> => {
     const { data } = await this.axiosClient().get(endpoints.users)

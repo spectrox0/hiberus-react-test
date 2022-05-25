@@ -28,7 +28,6 @@ export const UserForm: FC<Props> = ({ user, callback }) => {
       validateOnMount
       onSubmit={async ({ surname, name, password, email }, { resetForm }) => {
         const payload = password ? { password } : {}
-        console.log(surname)
         dispatch(
           !user
             ? createUser({
