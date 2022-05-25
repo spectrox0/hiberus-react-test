@@ -1,14 +1,16 @@
-import React, { FC, useEffect, useMemo, useState } from 'react'
+import React, { ChangeEventHandler, FC, useEffect, useMemo, useState } from 'react'
 import { Btn, Input, Text, Title } from '../../atoms'
 import { CustomTable } from '../../organism'
 import { useDispatch } from 'react-redux'
 import { deleteUser, getUsers } from '../../../store/actions'
 import { useAppSelector } from '../../../store/selector'
 import { Box, IconButton } from '@mui/material'
-import { DeleteOutline, EditOutlined, Search } from '@mui/icons-material'
+import { DeleteOutline, EditOutlined, PersonAdd, Search } from '@mui/icons-material'
 import { User } from '../../../types/User'
 import { Modal } from '../../molecules'
 import { UserForm } from '../../organism/forms/User'
+import Fuse from 'fuse.js'
+import debounce from 'lodash.debounce'
 
 enum Option {
   CREATE,
@@ -20,6 +22,7 @@ export type ValueModal = {
   option: Option
   value?: User
 }
+
 export const UsersTemplate: FC = () => {
   const dispatch = useDispatch()
   useEffect(() => {
@@ -27,29 +30,44 @@ export const UsersTemplate: FC = () => {
   }, [])
   const { users = [], currentUser } = useAppSelector((state) => ({ ...state.users, ...state.auth }))
   const [search, setSearch] = useState<string>('')
-  const filterUsers = () =>
-    useMemo<User[]>(
-      () =>
-        users.filter((item) => {
-          const searchValue = search.trim().toLowerCase()
-          return true
-        }),
-      [users],
-    )
+
+  const filterUsers = useMemo<User[]>(() => {
+    const fuse = new Fuse<User>(users, {
+      keys: Object.keys(users?.[0] || {}),
+    })
+    return fuse.search(search).map((item) => ({ ...item.item }))
+  }, [users, search])
+  const changeHandler: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = (event) => {
+    setSearch(event.target.value)
+  }
+  const debouncedChangeHandler = useMemo(() => debounce(changeHandler, 300), [])
+
   const [modal, setModal] = useState<ValueModal>()
   return (
     <div>
-      <Title variant={'h1'}>
+      <Title mt={2} variant={'h1'}>
         Welcome {currentUser?.name} {currentUser?.surname}
       </Title>
-      <Title my={2} mx={'auto'}>
-        Users
-      </Title>
-      <Btn onClick={() => setModal({ option: Option.CREATE })} sx={{ mb: 2 }}>
-        Create
-      </Btn>
+      <Box display={'flex'} flexWrap={'wrap'} justifyContent={'space-between'}>
+        <Title variant={'h2'} my={2}>
+          Users
+        </Title>
+        <Btn
+          startIcon={<PersonAdd />}
+          onClick={() => setModal({ option: Option.CREATE })}
+          sx={{ mb: 2 }}
+        >
+          Create a user
+        </Btn>
+      </Box>
       {users.length && (
-        <Input icon={Search} value={search} onChange={({ target }) => setSearch(target.value)} />
+        <Input
+          placeholder={'search'}
+          sx={{ mb: 2 }}
+          variant={'outlined'}
+          icon={Search}
+          onChange={debouncedChangeHandler}
+        />
       )}
       <Modal
         close={() => setModal(undefined)}
@@ -79,7 +97,7 @@ export const UsersTemplate: FC = () => {
         <UserForm callback={() => setModal(undefined)} user={modal?.value} />
       </Modal>
       <CustomTable
-        data={users.map((item) => ({
+        data={(search.trim() ? filterUsers : users).map((item) => ({
           id: item.id,
           name: item.name,
           surname: item.surname,
